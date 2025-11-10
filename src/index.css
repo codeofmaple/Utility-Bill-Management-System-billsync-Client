@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.bill-sync-container {
+    @apply container mx-auto
+}
+
+.links-hover-effect {
+    @apply relative py-2 transition-all duration-300;
+}
+
+.links-hover-effect:hover {
+    @apply text-cyan-500;
+}
+
+.links-hover-effect::after {
+    content: '';
+    @apply absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-300;
+}
+
+.links-hover-effect:hover::after {
+    @apply w-full;
+}

@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.links-hover-effect {
+    @apply transition-all duration-300 hover:translate-x-1;
+}
+
+.auth-bg-color {
+    @apply bg-linear-to-tr from-cyan-200 via-blue-100 to-purple-200
+}

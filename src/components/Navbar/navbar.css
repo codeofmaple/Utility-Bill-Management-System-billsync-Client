@@ -1,0 +1,10 @@
+/* .glow-profile {
+    @apply absolute inset-0 rounded-full bg-linear-to-r from-cyan-400 to-purple-500 opacity-10 blur-md animate-pulse
+} */
+
+@import "tailwindcss";
+
+
+.navlink-css {
+    @apply flex items-center gap-2 font-medium
+}
