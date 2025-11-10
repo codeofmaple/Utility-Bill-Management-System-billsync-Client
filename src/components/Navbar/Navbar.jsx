@@ -36,7 +36,7 @@ const Navbar = () => {
     const closeMobile = () => setMobileOpen(false);
     const toggleMobile = () => setMobileOpen(!mobileOpen);
 
-    const Links = () => (
+    const Links = ({ isMobile = false }) => (
         <>
             <NavLink to="/" className={linkClass} onClick={closeMobile}><FiHome /> Home</NavLink>
             <NavLink to="/bills" className={linkClass} onClick={closeMobile}><FiFileText /> Bills</NavLink>
@@ -47,51 +47,52 @@ const Navbar = () => {
             {!user ? (
                 <>
                     <NavLink to="/login" className={linkClass} onClick={closeMobile}><FiLogIn /> Login</NavLink>
-                    <NavLink to="/register" className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300" onClick={closeMobile}>
+                    <NavLink to="/register" className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-center" onClick={closeMobile}>
                         <FaAddressBook className="inline mr-2" /> Register
                     </NavLink>
                 </>
             ) : (
                 <>
-                    <div className="relative group" onClick={closeMobile}>
-                        <Link
-                            // to="/profile"
-                            to="/"
-                            className="inline-flex items-center justify-center w-10 h-10 rounded-full overflow-hidden shadow-md transition-transform duration-200 transform hover:scale-105"
-                            aria-label="Profile"
-                        >
-                            {user.photoURL ? (
-                                <img src={user.photoURL} alt={user.displayName || 'avatar'} className="w-full h-full object-cover" />
-                            ) : (
-                                <div className="w-full h-full bg-linear-to-r from-cyan-400 to-purple-500 flex items-center justify-center text-white">
-                                    <FiUser />
-                                </div>
-                            )}
-                        </Link>
+                    {!isMobile && (
+                        <div className="relative group" onClick={closeMobile}>
+                            <Link
+                                to="/"
+                                className="inline-flex items-center justify-center w-10 h-10 rounded-full overflow-hidden shadow-md transition-transform duration-200 transform hover:scale-105"
+                                aria-label="Profile"
+                            >
+                                {user.photoURL ? (
+                                    <img src={user.photoURL} alt={user.displayName || 'avatar'} className="w-full h-full object-cover" />
+                                ) : (
+                                    <div className="w-full h-full bg-linear-to-r from-cyan-400 to-purple-500 flex items-center justify-center text-white">
+                                        <FiUser />
+                                    </div>
+                                )}
+                            </Link>
 
-                        {/* Hover card */}
-                        <div className="pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 absolute right-0  w-48 bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-3 text-sm z-50">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full overflow-hidden">
-                                    {user.photoURL ? (
-                                        <img src={user.photoURL} alt="mini" className="w-full h-full object-cover" />
-                                    ) : (
-                                        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600"><FiUser /></div>
-                                    )}
+                            {/* hover card */}
+                            <div className="pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 absolute right-0  w-48 bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-3 text-sm z-50">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                                        {user.photoURL ? (
+                                            <img src={user.photoURL} alt="mini" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-600"><FiUser /></div>
+                                        )}
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="font-medium text-gray-800 truncate">{user.displayName || user.email}</div>
+                                        <div className="text-xs text-gray-500">{user.email}</div>
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <div className="font-medium text-gray-800 truncate">{user.displayName || user.email}</div>
-                                    <div className="text-xs text-gray-500">{user.email}</div>
-                                </div>
-                            </div>
 
-                            <div className="mt-3 flex gap-2">
-                                <Link to="/" className="flex-1 px-3 py-1 rounded-md text-center bg-gray-100 hover:bg-gray-200">Profile</Link>
+                                <div className="mt-3 flex gap-2">
+                                    <Link to="/" className="flex-1 px-3 py-1 rounded-md text-center bg-gray-100 hover:bg-gray-200">Profile</Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
 
-                    <button onClick={handleLogout} className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300" >
+                    <button onClick={() => { handleLogout(); closeMobile(); }} className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300" >
                         <RiLogoutCircleRLine className="inline mr-1" /> Logout
                     </button>
                 </>
@@ -114,19 +115,36 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <div className="navbar-end">
+                    <div className="navbar-end flex items-center gap-4">
                         <div className="hidden md:flex items-center gap-6">
                             <Links />
                         </div>
+
+                        {user && (
+                            <div className="flex items-center md:hidden mr-1">
+                                <Link to="/profile" className="inline-flex items-center justify-center w-9 h-9 rounded-full overflow-hidden shadow-sm transition-transform duration-150 transform hover:scale-105" aria-label="Open profile">
+                                    {user.photoURL ? (
+                                        <img src={user.photoURL} alt={user.displayName || 'avatar'} className="w-full h-full object-cover" />
+                                    ) : (
+                                        <div className="w-full h-full bg-linear-to-r from-cyan-400 to-purple-500 flex items-center justify-center text-white">
+                                            <FiUser />
+                                        </div>
+                                    )}
+                                </Link>
+                            </div>
+                        )}
+
+                        {/* mobile toggle button */}
                         <button className="md:hidden btn btn-square btn-ghost" onClick={toggleMobile} aria-label="Toggle mobile menu" aria-expanded={mobileOpen}>
                             {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
                         </button>
                     </div>
 
+                    {/* mobile dropdown */}
                     {mobileOpen && (
                         <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-2xl md:hidden border-t border-gray-100">
                             <div className="flex flex-col p-6 space-y-4">
-                                <Links />
+                                <Links isMobile={true} />
                             </div>
                         </div>
                     )}
@@ -137,10 +155,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
-
-
-

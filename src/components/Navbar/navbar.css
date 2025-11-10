@@ -8,3 +8,7 @@
 .navlink-css {
     @apply flex items-center gap-2 font-medium
 }
+
+.navlink-center{
+    @apply flex justify-center items-center
+}
