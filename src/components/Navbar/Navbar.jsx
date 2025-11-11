@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router';
 import { FiHome, FiFileText, FiCreditCard, FiUser, FiMenu, FiX, FiLogIn } from 'react-icons/fi';
 import { SiThunderstore } from 'react-icons/si';
@@ -11,14 +11,7 @@ import { toast } from 'react-toastify';
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
 
     const handleLogout = async () => {
         try {
@@ -101,7 +94,7 @@ const Navbar = () => {
     );
 
     return (
-        <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-xl' : 'bg-white shadow-lg'}`}>
+        <nav className={`bg-white shadow-lg`}>
             <div className="bg-linear-to-r from-cyan-400/5 to-purple-500/5">
                 <div className="navbar bill-sync-container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16">
                     <div className="navbar-start">

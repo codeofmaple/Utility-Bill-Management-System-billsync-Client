@@ -1,0 +1,34 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ec4899 !important;
+    transition: transform .25s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    transform: translateY(-4px) scale(1.05);
+    color: #db2777 !important;
+}
+
+.swiper-pagination-bullet {
+    background: #ec4899 !important;
+    opacity: 0.65;
+    size: 9px;
+    transform: scale(1);
+    transition: all 0.25s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #db2777 !important;
+    opacity: 1;
+    transform: scale(1.35);
+    box-shadow: 0 6px 18px rgba(219, 39, 119, 0.15);
+}
+
+.mySwiper .swiper-wrapper {
+    transition-timing-function: ease-in-out;
+}
+
+.mySwiper .swiper-slide {
+    will-change: opacity, transform;
+}

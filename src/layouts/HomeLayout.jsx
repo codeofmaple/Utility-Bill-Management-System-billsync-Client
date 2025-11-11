@@ -11,8 +11,6 @@ const HomeLayout = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <div className='bg-black'>
-            </div>
 
             <main>
                 <Outlet></Outlet>
