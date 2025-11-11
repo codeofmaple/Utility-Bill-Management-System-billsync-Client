@@ -21,3 +21,7 @@
 .links-hover-effect:hover::after {
     @apply w-full;
 }
+
+/* a.active {
+    @apply absolute left-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-300
+} */

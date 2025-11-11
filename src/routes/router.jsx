@@ -4,6 +4,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
 import Bills from "../pages/Bills/Bills";
+import BillDetails from "../pages/Details/BillDetails";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,14 @@ const router = createBrowserRouter([
             {
                 path: "/bills",
                 element: <Bills></Bills>
+            },
+            {
+                path: "/bill-details/:id",
+                element: <BillDetails></BillDetails>
+            },
+            {
+                path: "/my-pay-bills",
+                element: <h1>this is my pay bills</h1>
             },
 
         ]

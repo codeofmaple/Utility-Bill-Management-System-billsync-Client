@@ -22,7 +22,7 @@ const Footer = () => (
             {/* logo */}
             <div className='space-y-6'>
 
-                <div to="/" className="flex items-center space-x-3 hover:opacity-90 transition-all duration-300" aria-label="BillSync Home">
+                <div to="/" className="flex items-center space-x-3 hover:opacity-90 transition-all duration-300">
                     <div className="bg-linear-to-r from-cyan-400 to-purple-500 w-10 h-10 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
                         <SiThunderstore className="text-white" size={22} />
                     </div>

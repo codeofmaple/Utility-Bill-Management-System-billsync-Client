@@ -6,8 +6,6 @@ import RecentBills from '../../components/Home/RecentBills/RecentBills';
 const Home = () => {
     return (
         <div>
-            <h1 className=''>this is home</h1>
-
             <Slider></Slider>
             <RecentBills></RecentBills>
             <CustomerReviews></CustomerReviews>

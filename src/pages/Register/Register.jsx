@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router';
 import { FiUser, FiMail, FiCamera, FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
 import { FaGoogle } from 'react-icons/fa';
 import { SiThunderstore } from 'react-icons/si';
-import './register.css'; // reuse the same styles used by Login
+import './register.css';
 import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 
@@ -165,7 +165,7 @@ const Register = () => {
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="absolute right-4 top-3.5 text-white/70 hover:text-cyan-300 transition-colors"
-                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+
                             >
                                 {showPassword ? <FiEyeOff /> : <FiEye />}
                             </button>

@@ -3,16 +3,14 @@ import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router';
 
-const Card = ({ bill, index }) => {
-    if (!bill) return null;
-
+const Card = ({ bill }) => {
     const { image, title, category, location, date, _id } = bill;
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            initial={{ transform: "translateX(100px)" }}
+            animate={{ transform: "translateX(0px)" }}
+            transition={{ type: "tween" }}
 
             className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
         >
@@ -49,7 +47,7 @@ const Card = ({ bill, index }) => {
                 )}
 
                 {_id && (
-                    <Link to={`/bills/${_id}`}>
+                    <Link to={`/bill-details/${_id}`}>
                         <button className="w-full mt-auto bg-linear-to-r from-cyan-300 to-purple-300 text-gray-700 font-semibold py-2 rounded-lg hover:from-purple-200 hover:to-cyan-200 transition-colors duration-300">
                             See Details
                         </button>
