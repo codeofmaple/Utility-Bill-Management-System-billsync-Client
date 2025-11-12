@@ -14,15 +14,13 @@ const Bills = () => {
 
     return (
         <div
-            className="min-h-screen py-16 px-6 md:px-12 bg-linear-to-l from-cyan-50 to-purple-50"
+            className="min-h-screen py-8 md:py-16 px-6 md:px-12 bg-base-200"
         >
-            {/* Header */}
-            <div className="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row md:items-center md:justify-center gap-6">
-                <div>
-                    <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-cyan-500 to-purple-500">
-                        All Bills
-                    </h1>
-                </div>
+            {/* header */}
+            <div className='text-center'>
+                <h2 className="text-3xl md:text-4xl font-bold mb-10 bg-linear-to-l inline-block from-purple-500 to-cyan-500 bg-clip-text text-transparent">
+                    All Bills
+                </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

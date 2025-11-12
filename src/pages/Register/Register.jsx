@@ -174,7 +174,7 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3 bg-linear-to-r from-cyan-400 to-purple-500 text-white font-semibold rounded-2xl hover:shadow-2xl transition-transform duration-200 ease-out hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="w-full py-3 bg-linear-to-r from-cyan-400 to-purple-500 text-white font-semibold rounded-2xl hover:shadow-2xl transition-all duration-200 ease-out hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:translate-y-0.5"
                         >
                             {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : <span>Register</span>}
                             <FiArrowRight />

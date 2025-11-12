@@ -1,6 +1,6 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router';
-import { FiHome, FiFileText, FiCreditCard, FiUser, FiMenu, FiX, FiLogIn } from 'react-icons/fi';
+import { FiHome, FiFileText, FiCreditCard, FiUser, FiMenu, FiX, FiLogIn, FiInfo } from 'react-icons/fi';
 import { SiThunderstore } from 'react-icons/si';
 import { FaAddressBook } from 'react-icons/fa';
 import { RiLogoutCircleRLine } from "react-icons/ri";
@@ -9,6 +9,19 @@ import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
+
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    useEffect(() => {
+        const html = document.querySelector("html");
+        html.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light");
+    }; //theme
+
     const { user, logOut } = useAuth();
     const [mobileOpen, setMobileOpen] = useState(false);
     const navigate = useNavigate();
@@ -25,15 +38,16 @@ const Navbar = () => {
 
     const linkClass = ({ isActive }) =>
         `navlink-css links-hover-effect ${isActive ? 'text-purple-600' : 'text-gray-700'}`;
-
+    // toggle links on mobile
     const closeMobile = () => setMobileOpen(false);
     const toggleMobile = () => setMobileOpen(!mobileOpen);
 
     const Links = ({ isMobile = false }) => (
         <>
             <NavLink to="/" className={linkClass} onClick={closeMobile}><FiHome /> Home</NavLink>
+            <NavLink to="/about" className={linkClass} onClick={closeMobile}><FiInfo /> About</NavLink>
             <NavLink to="/bills" className={linkClass} onClick={closeMobile}><FiFileText /> Bills</NavLink>
-            {user && <NavLink to="/my-pay-bills" className={linkClass} onClick={closeMobile}><FiCreditCard /> My Pay Bills</NavLink>}
+            {user && <NavLink to="/my-pay-bills" className={`${linkClass} lg:text-nowrap lg:text-black1 md:flex md:justify-start md:items-center md:gap-2`} onClick={closeMobile}><FiCreditCard /> My Pay Bills</NavLink>}
 
             <div className="divider md:hidden border-t border-gray-200 my-2" />
 
@@ -49,7 +63,7 @@ const Navbar = () => {
                     {!isMobile && (
                         <div className="relative group" onClick={closeMobile}>
                             <Link
-                                to="/"
+                                to="/profile"
                                 className="inline-flex items-center justify-center w-10 h-10 rounded-full overflow-hidden shadow-md transition-transform duration-200 transform hover:scale-105"
                             >
                                 {user.photoURL ? (
@@ -61,7 +75,7 @@ const Navbar = () => {
                                 )}
                             </Link>
 
-                            {/* hover card */}
+                            {/* hover profile card */}
                             <div className="pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 absolute right-0  w-48 bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-3 text-sm z-50">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -84,7 +98,7 @@ const Navbar = () => {
                         </div>
                     )}
 
-                    <button onClick={() => { handleLogout(); closeMobile(); }} className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300" >
+                    <button onClick={() => { handleLogout(); closeMobile(); }} className="bg-linear-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-nowrap flex justify-center items-center gap-2" >
                         <RiLogoutCircleRLine className="inline mr-1" /> Logout
                     </button>
                 </>
@@ -93,9 +107,9 @@ const Navbar = () => {
     );
 
     return (
-        <nav className={`bg-white shadow-lg`}>
+        <nav className='bg-white shadow-lg'>
             <div className="bg-linear-to-r from-cyan-400/5 to-purple-500/5">
-                <div className="navbar bill-sync-container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16">
+                <div className="navbar main-container mx-auto h-16">
                     <div className="navbar-start">
                         <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-all duration-300">
                             <div className="bg-linear-to-r from-cyan-400 to-purple-500 size-10 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">
@@ -108,7 +122,17 @@ const Navbar = () => {
                     </div>
 
                     <div className="navbar-end flex items-center gap-4">
-                        <div className="hidden md:flex items-center gap-6">
+                        {/* theme toggle */}
+                        <div className="flex items-center">
+                            <input
+                                onChange={(e) => handleTheme(e.target.checked)}
+                                type="checkbox"
+                                defaultChecked={localStorage.getItem('theme') === "dark"}
+                                className="toggle toggle-sm"
+                            />
+                        </div>
+
+                        <div className="hidden lg:flex items-center gap-4 lg:gap-6">
                             <Links />
                         </div>
 
@@ -127,14 +151,14 @@ const Navbar = () => {
                         )}
 
                         {/* mobile toggle button */}
-                        <button className="md:hidden btn btn-square btn-ghost" onClick={toggleMobile}>
+                        <button className="lg:hidden btn btn-square btn-ghost text-gray-700" onClick={toggleMobile}>
                             {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
                         </button>
                     </div>
 
                     {/* mobile dropdown */}
                     {mobileOpen && (
-                        <div className="absolute z-50 top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-2xl md:hidden border-t border-gray-100">
+                        <div className="absolute z-50 top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-2xl lg:hidden border-t border-gray-100">
                             <div className="flex flex-col p-6 space-y-4">
                                 <Links isMobile={true} />
                             </div>

@@ -18,7 +18,7 @@ const Footer = () => (
         <div className="absolute inset-0 bg-linear-to-br from-purple-900/30 via-transparent to-cyan-900/30"></div>
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-cyan-400 to-purple-500"></div>
 
-        <div className="bill-sync-container relative z-10 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 md:px-0 px-[2%]">
+        <div className="main-container relative z-10 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 md:px-0 px-[2%]">
             {/* logo */}
             <div className='space-y-6'>
 

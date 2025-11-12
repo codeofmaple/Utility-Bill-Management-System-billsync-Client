@@ -19,7 +19,7 @@ const BillDetails = () => {
     phone: "",
     additionalInfo: "",
   });
-
+  // get bill
   useEffect(() => {
     axios
       .get(`/bills/${id}`)
@@ -27,6 +27,7 @@ const BillDetails = () => {
       .catch((err) => console.error(err));
   }, [axios, id]);
 
+  // simple loader
   if (!bill) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -83,7 +84,7 @@ const BillDetails = () => {
 
         {/* details */}
         <div className="p-8 text-gray-800">
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-500 to-purple-500 mb-3">
+          <h1 className="text-3xl inline-block text-center font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-500 to-purple-500 mb-3">
             {bill.title}
           </h1>
 
@@ -113,9 +114,9 @@ const BillDetails = () => {
             <button
               onClick={() => setIsModalOpen(true)}
               disabled={!isCurrentMonth}
-              className={`px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 ${isCurrentMonth
+              className={`px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg hover:shadow-cyan-500/10 ${isCurrentMonth
                 ? "bg-linear-to-r from-cyan-400 to-purple-500 hover:shadow-xl hover:scale-[1.02]"
-                : "bg-gray-300 cursor-not-allowed"
+                : "bg-gray-400 cursor-not-allowed"
                 }`}
             >
               {isCurrentMonth ? "Pay Bill" : "Cannot Pay — Not Current Month"}

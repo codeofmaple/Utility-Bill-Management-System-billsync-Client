@@ -5,6 +5,9 @@ import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
 import Bills from "../pages/Bills/Bills";
 import BillDetails from "../pages/Details/BillDetails";
+import MyPayBills from "../pages/MyPayBills.jsx/MyPayBills";
+import Profile from "../pages/Profile/Profile";
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
     {
@@ -34,7 +37,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my-pay-bills",
-                element: <h1>this is my pay bills</h1>
+                element: <MyPayBills></MyPayBills>
+            },
+            {
+                path: "/profile",
+                element: <Profile></Profile>
+            },
+            {
+                path: "/about",
+                element: <About></About>
             },
 
         ]

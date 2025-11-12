@@ -10,7 +10,7 @@
 }
 
 .footer-icon {
-    @apply w-8 h-8 bg-slate-800 rounded-2xl flex items-center justify-center text-slate-300 transition-all duration-300 hover:bg-slate-700 hover:scale-120 hover:shadow-lg
+    @apply size-8 bg-slate-800 rounded-2xl flex items-center justify-center text-slate-300 transition-all duration-300 hover:bg-slate-700 hover:scale-120 hover:shadow-lg
 }
 
 .footer-icon2 {
