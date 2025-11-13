@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import useAuth from './useAuth';
 
 const axiosSecureInstance = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://billsync-server.vercel.app'
 })
 
 const useSecureAxios = () => {

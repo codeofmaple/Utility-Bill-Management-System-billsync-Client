@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://billsync-server.vercel.app'
 })
 
 const useAxios = () => {

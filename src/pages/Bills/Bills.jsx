@@ -9,15 +9,23 @@ import FilterForm from "./FilterForm";
 
 const Bills = () => {
     const { setLoading, loading } = useAuth();
+    const [status, setStatus] = useState('idle'); // idle | loading | success | error
     const axios = useAxios();
     const [bills, setBills] = useState([]);
 
-    // get bills
+
+    // get bills 
     useEffect(() => {
-        setLoading(true);
+        setStatus('loading');
         axios.get('/bills')
-            .then((data) => setBills(data.data))
-            .catch((error) => console.error(error))
+            .then((data) => {
+                setBills(data.data)
+                setStatus('success');
+            })
+            .catch((error) => {
+                console.error(error)
+                setStatus('error');
+            })
             .finally(() => setLoading(false));
     }, [axios, setLoading]);
 
@@ -30,14 +38,10 @@ const Bills = () => {
             .then((response) => {
                 setBills(response.data);
             })
-            .catch((error) => {
-                console.error("Error fetching filtered bills:", error);
-            });
+            .catch((error) => console.error(error))
     };
 
-    if (loading) {
-        <CustomLoading></CustomLoading>
-    }
+    if (status === 'loading') return <CustomLoading />;
 
     return (
         <div className="min-h-screen bg-base-100 py-8">
@@ -79,7 +83,7 @@ const Bills = () => {
                 </Fade>
 
                 {/* Cards Section  */}
-                {bills && bills.length > 0 ? (
+                {status === 'success' && bills.length !== 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {bills.map((bill, index) => (
                             <Zoom key={bill._id} triggerOnce delay={index * 50}>
