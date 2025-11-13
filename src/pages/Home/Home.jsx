@@ -7,7 +7,7 @@ import CustomLoading from '../Loader/CustomLoading';
 
 const Home = () => {
     return (
-        <div className='bg-base-100 py-8 md:py-16 space-y-8 md:space-y-24'>
+        <div className='bg-base-100 py-8 md:py-16 space-y-12 md:space-y-24'>
             {/* <CustomLoading pageName="home" /> */}
             <title>BillSync | Home</title>
 
