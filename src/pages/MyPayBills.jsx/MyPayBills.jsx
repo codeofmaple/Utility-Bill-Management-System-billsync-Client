@@ -17,10 +17,10 @@ export default function MyPayBills() {
 
     useEffect(() => {
         axios.get("/my-bills")
-            .then(r => {
-                const billsData = r.data?.bills || r.data || [];
+            .then(data => {
+                const billsData = data.data?.bills || data.data || [];
                 const filteredBills = user?.email
-                    ? billsData.filter(b => b.email === user.email)
+                    ? billsData.filter(billData => billData.email === user.email)
                     : billsData;
                 setBills(filteredBills);
             })
@@ -52,7 +52,7 @@ export default function MyPayBills() {
         });
 
         doc.save("my-paid-bills-report.pdf");
-        toast.success("PDF report downloaded successfully!");
+        toast.success("PDF report download is starting!");
     };
 
     // update bill
@@ -133,6 +133,7 @@ export default function MyPayBills() {
     return (
         <div className="min-h-screen bg-base-100 p-4 md:p-6">
             <div className="max-w-7xl mx-auto space-y-6">
+                <title>BillSync | My Pay Bills</title>
                 {/* header */}
                 <Fade triggerOnce duration={800} onVisibilityChange={(inView) => inView}>
                     <div className="text-center">

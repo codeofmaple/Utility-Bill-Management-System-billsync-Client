@@ -92,7 +92,7 @@ const Navbar = () => {
                                 </div>
 
                                 <div className="mt-3 flex gap-2">
-                                    <Link to="/" className="flex-1 px-3 py-1 rounded-md text-center bg-gray-100 hover:bg-gray-200">Profile</Link>
+                                    <Link to="/profile" className="flex-1 px-3 py-1 rounded-md text-center bg-gray-100 hover:bg-gray-200">Profile</Link>
                                 </div>
                             </div>
                         </div>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiUser, FiMail, FiCalendar } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
 const Profile = () => {
-    const { user } = useAuth();
+    const axios = useAxios();
+    const { user, setLoading } = useAuth();
     const join = user?.metadata?.creationTime
         ? new Date(user.metadata.creationTime).toLocaleDateString("en-US", {
             year: "numeric",
@@ -12,8 +14,28 @@ const Profile = () => {
         })
         : "N/A";
 
+    const [bills, setBills] = useState([]);
+
+
+
+    useEffect(() => {
+        axios.get("/my-bills")
+            .then(data => {
+                const billsData = data.data?.bills || data.data || [];
+                const filteredBills = user?.email
+                    ? billsData.filter(billData => billData.email === user.email)
+                    : billsData;
+                setBills(filteredBills);
+            })
+            .finally(() => setLoading(false));
+    }, [axios, user]);
+
+    const totalAmount = bills.reduce((sum, bill) => sum + (+bill.amount || 0), 0);
+    const totalBills = bills.length;
+
     return (
         <div className="min-h-screen bg-base-200 py-10">
+            <title>BillSync | Profile</title>
             <div className="max-w-lg mx-auto px-4">
                 <div
                     className="relative rounded-2xl p-6 overflow-hidden
@@ -64,11 +86,11 @@ const Profile = () => {
                     {/* details & stats */}
                     <div className="mt-6 grid grid-cols-2 gap-4">
                         <div className="p-3 rounded-lg bg-white/4 dark:bg-white/3 border border-white/8 text-center">
-                            <div className="text-lg font-bold text-cyan-300">0</div>
+                            <div className="text-lg font-bold text-cyan-300">{totalBills}</div>
                             <div className="text-xs text-gray-600 dark:text-gray-300 mt-1">Bills Paid</div>
                         </div>
                         <div className="p-3 rounded-lg bg-white/4 dark:bg-white/3 border border-white/8 text-center">
-                            <div className="text-lg font-bold text-purple-300">৳0</div>
+                            <div className="text-lg font-bold text-purple-300">${totalAmount}</div>
                             <div className="text-xs text-gray-600 dark:text-gray-300 mt-1">Total Spent</div>
                         </div>
                     </div>

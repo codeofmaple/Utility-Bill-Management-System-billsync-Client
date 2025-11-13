@@ -16,6 +16,7 @@ const Bills = () => {
         <div
             className="min-h-screen py-8 md:py-16 px-6 md:px-12 bg-base-200"
         >
+            <title>BillSync | Bills</title>
             {/* header */}
             <div className='text-center'>
                 <h2 className="text-3xl md:text-4xl font-bold mb-10 bg-linear-to-l inline-block from-purple-500 to-cyan-500 bg-clip-text text-transparent">
