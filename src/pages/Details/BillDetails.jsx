@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { RxCross1 } from "react-icons/rx";
+import useSecureAxios from "../../hooks/useSecureAxios";
 
 const BillDetails = () => {
   const { user } = useAuth()
   const { id } = useParams();
-  const axios = useAxios();
+  const secureAxios = useSecureAxios();
   const [bill, setBill] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,11 +21,11 @@ const BillDetails = () => {
   });
   // get bill
   useEffect(() => {
-    axios
+    secureAxios
       .get(`/bills/${id}`)
       .then((res) => setBill(res.data))
       .catch((err) => console.error(err));
-  }, [axios, id]);
+  }, [secureAxios, id]);
 
   // simple loader
   if (!bill) {
@@ -52,7 +52,7 @@ const BillDetails = () => {
 
     console.log(paymentData)
 
-    axios.post("/my-bills", paymentData)
+    secureAxios.post("/my-bills", paymentData)
       .then(() => {
         toast.success("Bill payment successful!");
         setIsModalOpen(false);

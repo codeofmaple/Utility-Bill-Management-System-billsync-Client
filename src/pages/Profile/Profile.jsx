@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FiUser, FiMail, FiCalendar } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
-import useAxios from "../../hooks/useAxios";
+import useSecureAxios from "../../hooks/useSecureAxios";
 
 const Profile = () => {
-    const axios = useAxios();
+    const secureAxios = useSecureAxios();
     const { user, setLoading } = useAuth();
     const join = user?.metadata?.creationTime
         ? new Date(user.metadata.creationTime).toLocaleDateString("en-US", {
@@ -16,10 +16,8 @@ const Profile = () => {
 
     const [bills, setBills] = useState([]);
 
-
-
     useEffect(() => {
-        axios.get("/my-bills")
+        secureAxios.get("/my-bills")
             .then(data => {
                 const billsData = data.data?.bills || data.data || [];
                 const filteredBills = user?.email
@@ -28,7 +26,7 @@ const Profile = () => {
                 setBills(filteredBills);
             })
             .finally(() => setLoading(false));
-    }, [axios, user]);
+    }, [secureAxios, user, setLoading]);
 
     const totalAmount = bills.reduce((sum, bill) => sum + (+bill.amount || 0), 0);
     const totalBills = bills.length;

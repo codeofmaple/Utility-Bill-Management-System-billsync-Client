@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import { Fade, Zoom } from "react-awesome-reveal";
 import { FiEdit, FiTrash2, FiDownload, FiFileText, FiDollarSign, FiUser, FiMail, FiHome, FiPhone, FiCalendar } from "react-icons/fi";
@@ -7,16 +6,18 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useSecureAxios from "../../hooks/useSecureAxios";
+import CustomLoading from "../Loader/CustomLoading";
 
 export default function MyPayBills() {
-    const axios = useAxios();
+    const secureAxios = useSecureAxios();
     const { user } = useAuth();
     const [bills, setBills] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingBill, setEditingBill] = useState(null);
 
     useEffect(() => {
-        axios.get("/my-bills")
+        secureAxios.get("/my-bills")
             .then(data => {
                 const billsData = data.data?.bills || data.data || [];
                 const filteredBills = user?.email
@@ -25,7 +26,7 @@ export default function MyPayBills() {
                 setBills(filteredBills);
             })
             .finally(() => setLoading(false));
-    }, [axios, user]);
+    }, [secureAxios, user]);
 
     // download PDF
     const downloadPDF = () => {
@@ -68,7 +69,7 @@ export default function MyPayBills() {
             date: formData.get('date')
         };
 
-        axios.put(`/my-bills/${id}`, updatedPaidBill)
+        secureAxios.put(`/my-bills/${id}`, updatedPaidBill)
             .then(data => {
                 setBills(bills.map(bill =>
                     bill._id === id ? { ...bill, ...updatedPaidBill } : bill
@@ -96,7 +97,7 @@ export default function MyPayBills() {
             color: 'oklch(var(--bc))'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`/my-bills/${bill._id}`)
+                secureAxios.delete(`/my-bills/${bill._id}`)
                     .then(() => {
                         setBills(bills.filter(b => b._id !== bill._id));
                         Swal.fire({
@@ -122,9 +123,7 @@ export default function MyPayBills() {
     };
 
     if (loading) return (
-        <div className="min-h-64 flex justify-center items-center">
-            <div className="loading loading-spinner loading-lg text-cyan-500"></div>
-        </div>
+        <CustomLoading pageName="My Pay Bills"></CustomLoading>
     );
 
     const totalAmount = bills.reduce((sum, bill) => sum + (+bill.amount || 0), 0);
