@@ -1,6 +1,6 @@
 // Register.jsx
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { FiUser, FiMail, FiCamera, FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
 import { FaGoogle } from 'react-icons/fa';
 import { SiThunderstore } from 'react-icons/si';
@@ -13,6 +13,7 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -30,17 +31,17 @@ const Register = () => {
 
         // password validation rules
         if (!/(?=.*[A-Z])/.test(password)) {
-            toast.error('Password must contain at least one uppercase letter.');
+            // toast.error('Password must contain at least one uppercase letter.');
             setError('Password must contain at least one uppercase letter.');
             return;
         }
         if (!/(?=.*[a-z])/.test(password)) {
-            toast.error('Password must contain at least one lowercase letter.');
+            // toast.error('Password must contain at least one lowercase letter.');
             setError('Password must contain at least one lowercase letter.');
             return;
         }
         if (password.length < 6) {
-            toast.error('Password must be at least 6 characters long.');
+            // toast.error('Password must be at least 6 characters long.');
             setError('Password must be at least 6 characters long.');
             return;
         }
@@ -55,12 +56,12 @@ const Register = () => {
                         const updated = { ...user, displayName: name, photoURL: photo };
                         setUser(updated);
                         toast.success('Profile updated');
-                        navigate('/');
+                        navigate(`${location.state ? location.state : "/"}`)
                     })
                     .catch((err) => {
                         setUser(user);
-                        toast.error(`Profile update failed! ${err.code || err.message}`);
-                        navigate('/');
+                        toast.error(`Profile update failed!`);
+                        navigate(`${location.state ? location.state : "/"}`)
                     })
                     .finally(() => {
                         setLoading(false);
@@ -98,6 +99,7 @@ const Register = () => {
             className="min-h-screen flex items-center justify-center auth-bg-color px-4 py-5"
             style={{ background: 'linear-gradient(135deg,#06202f 0%, #08122a 50%, #2b0b3a 100%)' }}
         >
+            <title>BillSync | Register</title>
             <div className="w-full max-w-lg relative overflow-hidden rounded-3xl md:p-8 p-5">
                 <div
                     className="absolute -top-16 -left-20 w-72 h-72 rounded-full blur-3xl opacity-30"

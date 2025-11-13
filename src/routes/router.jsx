@@ -8,6 +8,7 @@ import BillDetails from "../pages/Details/BillDetails";
 import MyPayBills from "../pages/MyPayBills.jsx/MyPayBills";
 import Profile from "../pages/Profile/Profile";
 import About from "../pages/About/About";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
                 index: true,
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/about",
+                element: <About></About>
             },
             {
                 path: "/login",
@@ -33,20 +38,23 @@ const router = createBrowserRouter([
             },
             {
                 path: "/bill-details/:id",
-                element: <BillDetails></BillDetails>
+                element: <PrivateRoute>
+                    <BillDetails></BillDetails>
+                </PrivateRoute>
             },
             {
                 path: "/my-pay-bills",
-                element: <MyPayBills></MyPayBills>
+                element: <PrivateRoute>
+                    <MyPayBills></MyPayBills>
+                </PrivateRoute>
             },
             {
                 path: "/profile",
-                element: <Profile></Profile>
+                element: <PrivateRoute>
+                    <Profile></Profile>
+                </PrivateRoute>
             },
-            {
-                path: "/about",
-                element: <About></About>
-            },
+
 
         ]
 

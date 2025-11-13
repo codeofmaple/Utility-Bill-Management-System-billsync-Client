@@ -2,6 +2,7 @@ import { Fade, Zoom } from 'react-awesome-reveal';
 import { Typewriter } from 'react-simple-typewriter';
 import { FiShield, FiFileText, FiSearch, FiCreditCard, FiZap, FiWifi } from 'react-icons/fi';
 import { LuDroplets } from "react-icons/lu";
+import { Link } from 'react-router';
 
 const About = () => {
     const features = [
@@ -38,6 +39,7 @@ const About = () => {
 
     return (
         <div className="min-h-screen bg-base-100 text-base-content">
+            <title>BillSync | About</title>
             {/* name */}
             <section className="py-16 px-4">
                 <div className="container mx-auto text-center">
@@ -148,9 +150,9 @@ const About = () => {
                         <p className="text-base-content/70 mb-6 max-w-md mx-auto">
                             Join users managing their utility bills efficiently with our platform.
                         </p>
-                        <button className="btn btn-lg bg-linear-to-r from-cyan-500 to-purple-500 border-0 text-white hover:from-cyan-600 hover:to-purple-600">
+                        <Link to='/register' className="btn btn-lg bg-linear-to-r from-cyan-500 to-purple-500 border-0 text-white hover:from-cyan-600 hover:to-purple-600">
                             Get Started Today
-                        </button>
+                        </Link>
                     </Fade>
                 </div>
             </section>

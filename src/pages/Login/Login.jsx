@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowRight } from 'react-icons/fi';
 import { FaGoogle } from 'react-icons/fa';
 import { SiThunderstore } from 'react-icons/si';
@@ -11,6 +11,8 @@ const Login = () => {
     const { logInWithGoogle, setUser, loading, setLoading, logIn } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location.state)
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -22,7 +24,7 @@ const Login = () => {
                 const user = result.user;
                 setUser(user);
                 toast.success("Login successful");
-                navigate('/');
+                navigate(`${location.state ? location.state : "/"}`)
                 e.target.reset();
             })
             .catch((error) => {
@@ -37,7 +39,7 @@ const Login = () => {
             .then((result) => {
                 setUser(result.user);
                 toast.success("Google login successful!");
-                navigate("/");
+                navigate(`${location.state ? location.state : "/"}`)
             })
             .catch((error) => {
                 toast.error(`Login failed! ${error.message}`);
@@ -51,6 +53,7 @@ const Login = () => {
     return (
         <div className="min-h-screen flex items-center justify-center auth-bg-color px-4 bg-base-200"
             style={{ background: 'linear-gradient(135deg,#06202f 0%, #08122a 50%, #2b0b3a 100%)' }}>
+            <title>BillSync | Login</title>
             <div className="w-full max-w-lg relative overflow-hidden rounded-3xl md:p-8 p-5 ">
                 <div className="absolute -top-16 -left-20 w-72 h-72 rounded-full blur-3xl opacity-30"
                     style={{ background: 'linear-gradient(90deg,#00d2ff,#9b5cff)' }} />
@@ -147,7 +150,7 @@ hover:shadow-cyan-500/20"
                     {/* register */}
                     <p className="text-center mt-5 text-sm text-white/70 relative z-20">
                         Don't have an account?{' '}
-                        <NavLink to="/register" className="font-semibold text-transparent bg-linear-to-r from-cyan-300 to-purple-300 bg-clip-text hover:underline">
+                        <NavLink state={location.state} to="/register" className="font-semibold text-transparent bg-linear-to-r from-cyan-300 to-purple-300 bg-clip-text hover:underline">
                             Register Now
                         </NavLink>
                     </p>
