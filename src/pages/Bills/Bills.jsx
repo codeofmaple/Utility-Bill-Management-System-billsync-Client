@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 const Bills = () => {
+    const { setLoading, loading } = useAuth();
     const axios = useAxios();
     const [bills, setBills] = useState([]);
 
     useEffect(() => {
         axios.get('/bills')
             .then((res) => setBills(res.data))
-            .catch((err) => console.error(err));
-    }, [axios]);
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, [axios, setLoading]);
+
+    if (loading) return (
+        <CustomLoading pageName="My Pay Bills"></CustomLoading>
+    );
 
     return (
         <div

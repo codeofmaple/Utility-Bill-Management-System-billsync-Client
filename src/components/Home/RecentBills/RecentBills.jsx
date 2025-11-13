@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import Card from '../../Card/Card';
+import useAuth from '../../../hooks/useAuth';
+import CustomLoading from '../../../pages/Loader/CustomLoading';
 
 const RecentBills = () => {
+    const { setLoading, loading } = useAuth();
     const axios = useAxios();
     const [recentBills, setRecentBills] = useState([]);
 
@@ -10,8 +13,13 @@ const RecentBills = () => {
         axios
             .get('/recent-bills')
             .then((res) => setRecentBills(res.data))
-            .catch((err) => console.error(err));
-    }, [axios]);
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, [axios, setLoading]);
+
+    if (loading) return (
+        <CustomLoading pageName="Recent Bills"></CustomLoading>
+    );
 
     return (
         <div className="px-6 md:px-0 bg-base-100 main-container md:pb-16 pb-8">

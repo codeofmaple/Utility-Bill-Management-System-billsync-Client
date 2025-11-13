@@ -59,9 +59,6 @@ const router = createBrowserRouter([
                 path: "/*",
                 element: <ErrorPage></ErrorPage>
             },
-
-
-
         ]
 
     },
