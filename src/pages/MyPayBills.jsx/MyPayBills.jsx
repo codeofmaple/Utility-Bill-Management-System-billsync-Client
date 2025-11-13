@@ -87,14 +87,12 @@ export default function MyPayBills() {
     const deleteBill = (bill) => {
         Swal.fire({
             title: "Are you sure?",
-            text: "This action cannot be undone!",
+            text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#ef4444",
-            cancelButtonColor: "#6b7280",
-            confirmButtonText: "Yes, delete it!",
-            background: 'oklch(var(--b1))',
-            color: 'oklch(var(--bc))'
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
                 secureAxios.delete(`/my-bills/${bill._id}`)
@@ -184,11 +182,12 @@ export default function MyPayBills() {
 
                 {/* bills table */}
                 <Fade triggerOnce duration={1000} delay={400}>
-                    <div className="card bg-base-100 border border-base-300 shadow-xl">
-                        <div className="card-body p-0">
+                    <div className=" bg-base-100 border border-base-300 shadow-xl">
+                        <div className=" p-0">
                             {bills.length > 0 ? (
                                 <div className="overflow-x-auto">
                                     <table className="table table-zebra w-full">
+                                        {/* table head */}
                                         <thead className="bg-base-200">
                                             <tr>
                                                 <th className="text-base-content font-bold">#</th>
@@ -219,6 +218,7 @@ export default function MyPayBills() {
                                                 <th className="text-base-content font-bold">Actions</th>
                                             </tr>
                                         </thead>
+                                        {/* table body */}
                                         <tbody>
                                             {bills.map((bill, index) => (
                                                 <tr key={bill._id} className="hover:bg-base-200/50 transition-colors duration-300">
