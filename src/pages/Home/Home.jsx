@@ -4,6 +4,7 @@ import CustomerReviews from '../../components/Home/Review/CustomerReviews';
 import RecentBills from '../../components/Home/RecentBills/RecentBills';
 import CategorySection from '../../components/Home/CategorySection';
 import CustomLoading from '../Loader/CustomLoading';
+import FAQ from '../../components/Home/FAQ';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <CategorySection></CategorySection>
             <RecentBills></RecentBills>
             <CustomerReviews></CustomerReviews>
+            <FAQ></FAQ>
         </div>
     );
 };

@@ -78,7 +78,7 @@ const Navbar = () => {
                             </Link>
 
                             {/* hover profile card */}
-                            <div className="pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 absolute right-0  w-48 bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-3 text-sm z-50">
+                            <div className="pointer-events-none opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200c top-14 absolute right-0  w-48 bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-lg p-3 text-sm z-50">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full overflow-hidden">
                                         {user.photoURL ? (
@@ -88,13 +88,14 @@ const Navbar = () => {
                                         )}
                                     </div>
                                     <div className="flex-1">
-                                        <div className="font-medium text-gray-800 truncate">{user.displayName || user.email}</div>
-                                        <div className="text-xs text-gray-500">{user.email}</div>
+                                        <div className="font-medium text-gray-800 truncate">{user.displayName}</div>
+                                        {/* <div className="text-xs text-gray-500">{user.email}</div> */}
                                     </div>
                                 </div>
 
                                 <div className="mt-3 flex gap-2">
-                                    <Link to="/profile" className="flex-1 px-3 py-1 rounded-md text-center bg-gray-100 hover:bg-gray-200">Profile</Link>
+                                    <Link to="/profile" className="flex-1 px-3 py-1 rounded-md text-center bg-linear-to-r from-cyan-400 to-purple-500 text-white
+hover:shadow-lg transition-all duration-300 ">Profile</Link>
                                 </div>
                             </div>
                         </div>

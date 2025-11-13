@@ -21,13 +21,13 @@ const FilterForm = ({ handleFilter }) => {
                     </div>
 
                     {/* fiter */}
-                    <div className="flex items-center gap-3">
-                        <FiFilter className="text-purple-500 text-xl shrink-0" />
+                    <div className="flex-1 relative md:flex-none">
+                        <FiFilter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-500 text-lg z-10" />
                         <select
                             name="category"
-                            className="px-4 py-3 bg-base-100 border border-base-300 rounded-xl 
-                                     focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 
-                                     transition-all duration-300 text-base-content min-w-[180px]"
+                            className="w-full pl-12 pr-4 py-3 bg-base-100 border border-base-300 rounded-xl 
+                 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 
+                 transition-all duration-300 text-base-content cursor-pointer"
                         >
                             <option value="all">All Categories</option>
                             <option value="Electricity">Electricity</option>
@@ -37,15 +37,20 @@ const FilterForm = ({ handleFilter }) => {
                         </select>
                     </div>
 
+
+
+
                     {/* btn */}
-                    <button
-                        type="submit"
-                        className="btn bg-linear-to-r from-cyan-500 to-purple-500 border-0 text-white 
+                    <div className="flex justify-center items-center">
+                        <button
+                            type="submit"
+                            className="btn bg-linear-to-r from-cyan-500 to-purple-500 border-0 text-white  md:w-auto w-full
                                  hover:from-cyan-600 hover:to-purple-600 transform transition-all duration-300 
                                  hover:scale-105"
-                    >
-                        Apply Filters
-                    </button>
+                        >
+                            Apply Filters
+                        </button>
+                    </div>
                 </div>
             </form>
         </Fade>
