@@ -116,7 +116,7 @@ const Login = () => {
 
                                 <Fade triggerOnce delay={500}>
                                     <div className="text-right">
-                                        <NavLink to="/forgot-password" className="text-sm text-cyan-300 hover:text-cyan-200 transition-all duration-300 transform hover:scale-105">
+                                        <NavLink to="/#" className="text-sm text-cyan-300 hover:text-cyan-200 transition-all duration-300 transform hover:scale-105">
                                             Forgot Password?
                                         </NavLink>
                                     </div>
