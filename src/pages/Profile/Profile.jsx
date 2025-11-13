@@ -31,6 +31,8 @@ const Profile = () => {
     const totalAmount = bills.reduce((sum, bill) => sum + (+bill.amount || 0), 0);
     const totalBills = bills.length;
 
+    console.log(bills)
+
     return (
         <div className="min-h-screen bg-base-200 py-10">
             <title>BillSync | Profile</title>

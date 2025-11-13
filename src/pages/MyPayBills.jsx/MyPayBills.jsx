@@ -17,7 +17,7 @@ export default function MyPayBills() {
     const [editingBill, setEditingBill] = useState(null);
 
     useEffect(() => {
-        secureAxios.get("/my-bills")
+        secureAxios.get(`/my-bills?email=${user?.email || ''}`)
             .then(data => {
                 const billsData = data.data?.bills || data.data || [];
                 const filteredBills = user?.email
