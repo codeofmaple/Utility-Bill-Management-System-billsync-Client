@@ -47,7 +47,9 @@ const Navbar = () => {
             <NavLink to="/" className={linkClass} onClick={closeMobile}><FiHome /> Home</NavLink>
             <NavLink to="/about" className={linkClass} onClick={closeMobile}><FiInfo /> About</NavLink>
             <NavLink to="/bills" className={linkClass} onClick={closeMobile}><FiFileText /> Bills</NavLink>
-            {user && <NavLink to="/my-pay-bills" className={`${linkClass} lg:text-nowrap lg:text-black1 md:flex md:justify-start md:items-center md:gap-2`} onClick={closeMobile}><FiCreditCard /> My Pay Bills</NavLink>}
+            {user && <NavLink to="/my-pay-bills" className={linkClass} onClick={closeMobile}><FiCreditCard /> <span
+                className='text-nowrap'
+            >My Pay Bills</span></NavLink>}
 
             <div className="divider md:hidden border-t border-gray-200 my-2" />
 
