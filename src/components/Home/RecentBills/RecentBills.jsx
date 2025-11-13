@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
-import Card from '../../Card/Card';
+import BillCard from '../../Card/BillCard';
 import useAuth from '../../../hooks/useAuth';
 import CustomLoading from '../../../pages/Loader/CustomLoading';
 
@@ -31,7 +31,7 @@ const RecentBills = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 {recentBills.map((bill) => (
-                    <Card key={bill._id} bill={bill} />
+                    <BillCard key={bill._id} bill={bill} />
                 ))}
             </div>
         </div>
