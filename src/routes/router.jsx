@@ -9,6 +9,7 @@ import MyPayBills from "../pages/MyPayBills.jsx/MyPayBills";
 import Profile from "../pages/Profile/Profile";
 import About from "../pages/About/About";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,11 @@ const router = createBrowserRouter([
                     <Profile></Profile>
                 </PrivateRoute>
             },
+            {
+                path: "/*",
+                element: <ErrorPage></ErrorPage>
+            },
+
 
 
         ]
