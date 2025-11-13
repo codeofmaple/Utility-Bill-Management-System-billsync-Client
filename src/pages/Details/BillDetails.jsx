@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
+import { Fade } from "react-awesome-reveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { RxCross1 } from "react-icons/rx";
 import useSecureAxios from "../../hooks/useSecureAxios";
+import ErrorPage from "../ErrorPage";
 
 const BillDetails = () => {
-  const { user } = useAuth()
+  const { user, setLoading, loading } = useAuth()
   const { id } = useParams();
   const secureAxios = useSecureAxios();
   const [bill, setBill] = useState(null);
@@ -24,16 +26,17 @@ const BillDetails = () => {
     secureAxios
       .get(`/bills/${id}`)
       .then((res) => setBill(res.data))
-      .catch((err) => console.error(err));
-  }, [secureAxios, id]);
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [secureAxios, id, setLoading]);
+
+  if (loading) return (
+    <CustomLoading pageName="BillSync | Bill Details"></CustomLoading>
+  );
 
   // simple loader
   if (!bill) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="w-10 h-10 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
+    return <ErrorPage></ErrorPage>;
   }
 
   const billMonth = new Date(bill.date).getMonth();
