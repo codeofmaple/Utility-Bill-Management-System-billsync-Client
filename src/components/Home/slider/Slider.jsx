@@ -104,7 +104,7 @@ const Slider = () => {
                             loop={true}
                             speed={800}
                             slidesPerView={1}
-                            className="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+                            className="aspect-auto"
                         >
                             {slides.map((slide, index) => (
                                 <SwiperSlide key={index}>
@@ -120,7 +120,7 @@ const Slider = () => {
                                         </Zoom>
 
                                         <div className="absolute inset-x-4 bottom-4 md:bottom-12 md:inset-x-12 
-                                            bg-base-100/80 backdrop-blur-md px-4 py-4 md:px-8 md:py-6 rounded-2xl shadow-lg 
+                                            bg-base-100/80 backdrop-blur-md px-4 py-2 md:px-8 md:py-6 rounded-2xl shadow-lg 
                                             border border-base-300 mx-auto max-w-2xl text-center">
 
                                             <Fade triggerOnce delay={400} direction="up">
@@ -130,7 +130,7 @@ const Slider = () => {
                                             </Fade>
 
                                             <Fade triggerOnce delay={600} direction="up">
-                                                <p className="text-base-content/80 text-xs sm:text-sm md:text-base leading-relaxed">
+                                                <p className=" hidden md:block text-base-content/80 text-xs sm:text-sm md:text-base leading-relaxed">
                                                     {slide.description}
                                                 </p>
                                             </Fade>
