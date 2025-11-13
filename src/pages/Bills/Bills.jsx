@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
+import CustomLoading from "../Loader/CustomLoading";
 
 const Bills = () => {
     const { setLoading, loading } = useAuth();
@@ -21,7 +22,7 @@ const Bills = () => {
 
     return (
         <div
-            className="min-h-screen py-8 md:py-16 px-6 md:px-12 bg-base-200"
+            className="min-h-screen py-8 md:py-16 main-container px-4 md:px-0"
         >
             <title>BillSync | Bills</title>
             {/* header */}

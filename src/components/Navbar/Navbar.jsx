@@ -109,7 +109,7 @@ const Navbar = () => {
     return (
         <nav className='bg-white shadow-lg'>
             <div className="bg-linear-to-r from-cyan-400/5 to-purple-500/5">
-                <div className="navbar main-container mx-auto h-16">
+                <div className="navbar main-container px-4 md:px-0 h-16">
                     <div className="navbar-start">
                         <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-all duration-300">
                             <div className="bg-linear-to-r from-cyan-400 to-purple-500 size-10 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow">

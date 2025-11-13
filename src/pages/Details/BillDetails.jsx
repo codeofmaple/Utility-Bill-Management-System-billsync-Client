@@ -65,10 +65,7 @@ const BillDetails = () => {
 
   return (
     <div
-      className="min-h-screen flex justify-center items-center py-16 px-6"
-      style={{
-        background: "linear-gradient(135deg, #f9f9ff 0%, #f3f6ff 100%)",
-      }}
+      className=" flex justify-center items-center py-8 md:py-16 px-4 md:px-0 main-container"
     >
       <div className="max-w-4xl w-full bg-white/90 rounded-3xl shadow-lg overflow-hidden border border-white/20">
         {/* img */}

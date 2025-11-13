@@ -56,7 +56,7 @@ const CategorySection = () => {
     return (
         <div className="bg-base-100 text-base-content main-container">
             {/* hero */}
-            <section className="text-center mb-16 px-4">
+            <section className="text-center mb-14 px-4">
                 <Fade triggerOnce cascade damping={0.3}>
                     <h1 className="text-4xl md:text-5xl font-bold mb-6">
                         Utility Bill{' '}
@@ -72,9 +72,9 @@ const CategorySection = () => {
             </section>
 
             {/* category */}
-            <section className="mb-16 px-4 md:px-0">
+            <section className="mb-14 px-4 md:px-0">
                 <Fade triggerOnce>
-                    <h2 className="text-3xl font-bold text-center mb-12">
+                    <h2 className="text-3xl font-bold text-center mb-8">
                         Supported <span className="text-cyan-500">Utilities</span>
                     </h2>
                 </Fade>
@@ -99,7 +99,7 @@ const CategorySection = () => {
             {/* feature */}
             <section className="px-4 md:px-0">
                 <Fade triggerOnce>
-                    <h2 className="text-3xl font-bold text-center mb-12">
+                    <h2 className="text-3xl font-bold text-center mb-8">
                         Key <span className="text-purple-500">Features</span>
                     </h2>
                 </Fade>
@@ -120,7 +120,7 @@ const CategorySection = () => {
             </section>
 
             {/* tech stack */}
-            <section className="mt-16 px-4">
+            <section className="mt-14 px-4">
                 <Fade triggerOnce>
                     <div className="text-center max-w-2xl mx-auto">
                         <h3 className="text-xl font-semibold mb-6 text-cyan-500">

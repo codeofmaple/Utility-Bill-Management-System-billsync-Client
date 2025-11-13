@@ -22,7 +22,7 @@ const RecentBills = () => {
     );
 
     return (
-        <div className="px-6 md:px-0 bg-base-100 main-container md:pb-16 pb-8">
+        <div className="px-4 md:px-0 bg-base-100 main-container">
             <div className='text-center'>
                 <h2 className="text-4xl md:text-5xl font-bold mb-10 bg-linear-to-l inline-block from-purple-500 to-cyan-500 bg-clip-text text-transparent">
                     Recent Bills

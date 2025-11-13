@@ -60,9 +60,8 @@ const slides = [
 const Slider = () => {
     return (
         <Fade triggerOnce duration={1000} cascade damping={0.3}>
-            <div className="bg-base-100 md:py-8">
+            <div className="bg-base-100">
                 <div className="main-container px-4 md:px-0">
-
                     <div className="text-center mb-8">
                         <Zoom triggerOnce duration={800}>
                             <h1 className="text-4xl md:text-5xl font-bold mb-4">
