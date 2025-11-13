@@ -8,8 +8,8 @@ import BillCard from "../../components/Card/BillCard";
 import FilterForm from "./FilterForm";
 
 const Bills = () => {
-    const { setLoading, loading } = useAuth();
-    const [status, setStatus] = useState('idle'); // idle | loading | success | error
+    const { setLoading } = useAuth();
+    const [status, setStatus] = useState('idle');
     const axios = useAxios();
     const [bills, setBills] = useState([]);
 
@@ -45,6 +45,8 @@ const Bills = () => {
 
     return (
         <div className="min-h-screen bg-base-100 py-8">
+            <title>BillSync | Bills</title>
+
             <div className="main-container px-4 md:px-0">
                 {/* title */}
                 <Fade triggerOnce duration={800}>

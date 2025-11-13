@@ -8,12 +8,15 @@ import useAuth from "../../hooks/useAuth";
 import { RxCross1 } from "react-icons/rx";
 import useSecureAxios from "../../hooks/useSecureAxios";
 import ErrorPage from "../ErrorPage";
+import CustomLoading from "../Loader/CustomLoading";
 
 const BillDetails = () => {
-  const { user, setLoading, loading } = useAuth()
+  const { user } = useAuth();
+
   const { id } = useParams();
   const secureAxios = useSecureAxios();
   const [bill, setBill] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -21,20 +24,20 @@ const BillDetails = () => {
     phone: "",
     additionalInfo: "",
   });
+
   // get bill
   useEffect(() => {
+    setLoading(true);
     secureAxios
       .get(`/bills/${id}`)
       .then((res) => setBill(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
-  }, [secureAxios, id, setLoading]);
+  }, [secureAxios, id]);
 
-  if (loading) return (
-    <CustomLoading pageName="BillSync | Bill Details"></CustomLoading>
-  );
+  if (loading) return <CustomLoading pageName="Bill Details" />;
 
-  // simple loader
+  // error page
   if (!bill) {
     return <ErrorPage></ErrorPage>;
   }
@@ -53,9 +56,8 @@ const BillDetails = () => {
       date: new Date().toISOString(),
     };
 
-    console.log(paymentData)
-
-    secureAxios.post("/my-bills", paymentData)
+    secureAxios
+      .post("/my-bills", paymentData)
       .then(() => {
         toast.success("Bill payment successful!");
         setIsModalOpen(false);
@@ -63,23 +65,20 @@ const BillDetails = () => {
       .catch(() => toast.error("Payment failed! Please try again."));
   };
 
+
+
   return (
-    <div
-      className=" flex justify-center items-center py-8 md:py-16 px-4 md:px-0 main-container"
-    >
+    <div className="flex justify-center items-center py-8 md:py-16 px-4 md:px-0 main-container">
+      <title>BillSync | Bill Details</title>
       <div className="max-w-4xl w-full bg-white/90 rounded-3xl shadow-lg overflow-hidden border border-white/20">
         {/* img */}
         <motion.div
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className=" aspect-video overflow-hidden"
+          className="aspect-video overflow-hidden"
         >
-          <img
-            src={bill.image}
-            alt={bill.title}
-            className="h-full w-full object-fill"
-          />
+          <img src={bill.image} alt={bill.title} className="h-full w-full object-fill" />
         </motion.div>
 
         {/* details */}
@@ -125,8 +124,6 @@ const BillDetails = () => {
         </div>
       </div>
 
-
-
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -139,7 +136,7 @@ const BillDetails = () => {
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
               className="w-full max-w-lg my-4 rounded-2xl shadow-[0_0_25px_rgba(150,90,255,0.3)] relative
                    bg-linear-to-br from-[#1a0028]/90 to-[#0a0018]/90 border border-purple-700/40
                    p-6 sm:p-8 max-h-[calc(100vh-30px)] overflow-auto text-gray-100"
@@ -161,7 +158,7 @@ const BillDetails = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="email"
-                  value={user?.email || ''}
+                  value={user?.email || ""}
                   readOnly
                   className="w-full p-3 border border-purple-700/30 rounded-lg bg-[#150021]/70 text-gray-200
                        focus:outline-none focus:border-purple-600 focus:shadow-lg focus:shadow-cyan-500/20 placeholder-gray-400"
@@ -222,9 +219,7 @@ const BillDetails = () => {
                   name="additionalInfo"
                   placeholder="Additional Info (optional)"
                   value={formData.additionalInfo}
-                  onChange={(e) =>
-                    setFormData({ ...formData, additionalInfo: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
                   className="w-full p-3 border border-purple-700/30 rounded-lg bg-[#150021]/70 text-gray-100 h-24
                        focus:outline-none focus:border-purple-600 focus:shadow-lg focus:shadow-cyan-500/20"
                 />
@@ -252,12 +247,8 @@ const BillDetails = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-
-    </div >
+    </div>
   );
 };
 
 export default BillDetails;
-
-
