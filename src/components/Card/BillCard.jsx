@@ -43,7 +43,7 @@ const BillCard = ({ bill }) => {
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <FiDollarSign className="text-green-500 shrink-0" />
+                                {/* <FiDollarSign className="text-green-500 shrink-0" /> */}
                                 <span className="text-lg font-bold text-green-500">${(+amount || 0).toFixed(2)}</span>
                             </div>
                         </div>
