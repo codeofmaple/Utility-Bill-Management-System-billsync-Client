@@ -10,6 +10,7 @@ import Profile from "../pages/Profile/Profile";
 import About from "../pages/About/About";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,16 @@ const router = createBrowserRouter([
             },
         ]
 
+    },
+    {
+        path: "/dashboard/",
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "/dashboard/overview",
+                element: <h1>Dashboard Overview</h1>
+            },
+        ]
     },
 ]);
 

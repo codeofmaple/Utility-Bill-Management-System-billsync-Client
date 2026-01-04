@@ -94,6 +94,10 @@ const Navbar = () => {
                                 </div>
 
                                 <div className="mt-3 flex gap-2">
+                                    <Link to="/dashboard/overview" className="flex-1 px-3 py-1 rounded-md text-center bg-linear-to-r from-cyan-400 to-purple-500 text-white
+hover:shadow-lg transition-all duration-300 ">Dashboard</Link>
+                                </div>
+                                <div className="mt-3 flex gap-2">
                                     <Link to="/profile" className="flex-1 px-3 py-1 rounded-md text-center bg-linear-to-r from-cyan-400 to-purple-500 text-white
 hover:shadow-lg transition-all duration-300 ">Profile</Link>
                                 </div>
