@@ -64,20 +64,22 @@ const router = createBrowserRouter([
 
     },
     {
-        path: "/dashboard/",
-        element: <DashboardLayout></DashboardLayout>,
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/overview",
-                element: <h1>Dashboard Overview</h1>
+                element: <PrivateRoute>
+                    <h1>Dashboard Overview</h1>
+                </PrivateRoute>
             },
             {
                 path: "/dashboard/my-pay-bills",
-                element: <MyPayBills></MyPayBills>
+                element: <PrivateRoute><MyPayBills></MyPayBills></PrivateRoute>
             },
             {
                 path: "/dashboard/profile",
-                element: <Profile></Profile>
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
             },
         ]
     },

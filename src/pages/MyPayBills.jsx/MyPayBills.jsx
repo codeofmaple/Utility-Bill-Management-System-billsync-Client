@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Fade, Zoom } from "react-awesome-reveal";
-import { FiEdit, FiTrash2, FiDownload, FiFileText, FiDollarSign, FiUser, FiMail, FiHome, FiPhone, FiCalendar } from "react-icons/fi";
+import {
+    FiEdit, FiTrash2, FiDownload, FiFileText, FiDollarSign,
+    FiUser, FiMail, FiHome, FiPhone, FiCalendar
+} from "react-icons/fi";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import Swal from "sweetalert2";
