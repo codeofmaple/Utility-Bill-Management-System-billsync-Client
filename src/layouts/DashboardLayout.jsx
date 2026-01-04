@@ -1,5 +1,7 @@
 import React from 'react';
-import { Outlet } from 'react-router';
+import { FiCreditCard, FiUser } from 'react-icons/fi';
+import { MdDashboard } from 'react-icons/md';
+import { Link, Outlet } from 'react-router';
 
 const DashboardLayout = () => {
     return (
@@ -15,8 +17,8 @@ const DashboardLayout = () => {
                         </label>
                         <div className="px-4">Navbar Title</div>
                     </nav>
-                    {/* Page content here */}
-                    <div className="p-4">Page Content</div>
+                    {/* Page content here --------------------- */}
+                    {/* <div className="p-4">Page Content</div> */}
                     <Outlet></Outlet>
                 </div>
 
@@ -27,20 +29,37 @@ const DashboardLayout = () => {
                         <ul className="menu w-full grow">
                             {/* List item */}
                             <li>
-                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                                <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
                                     {/* Home icon */}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
                                     <span className="is-drawer-close:hidden">Homepage</span>
-                                </button>
+                                </Link>
                             </li>
 
-                            {/* List item */}
+                            {/* dashboard List item */}
+                            {/* overview */}
                             <li>
-                                <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                    {/* Settings icon */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                                    <span className="is-drawer-close:hidden">Settings</span>
-                                </button>
+                                <Link to="/dashboard/overview" className="is-drawer-close:tooltip py-2.5
+                                 is-drawer-close:tooltip-right" data-tip="Overview">
+                                    <MdDashboard />
+                                    <span className="is-drawer-close:hidden">Overview</span>
+                                </Link>
+                            </li>
+                            {/* My Pay Bills */}
+                            <li>
+                                <Link to="/dashboard/my-pay-bills" className="is-drawer-close:tooltip py-2.5
+                                is-drawer-close:tooltip-right" data-tip="My Pay Bills">
+                                    <FiCreditCard />
+                                    <span className="is-drawer-close:hidden">My Pay Bills</span>
+                                </Link>
+                            </li>
+                            {/* Profile */}
+                            <li>
+                                <Link to="/dashboard/profile" className="is-drawer-close:tooltip py-2.5
+                                is-drawer-close:tooltip-right" data-tip="Profile">
+                                    <FiUser />
+                                    <span className="is-drawer-close:hidden">Profile</span>
+                                </Link>
                             </li>
                         </ul>
                     </div>

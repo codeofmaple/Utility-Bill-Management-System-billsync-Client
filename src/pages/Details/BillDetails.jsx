@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { Fade } from "react-awesome-reveal";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCalendarAlt, FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";

@@ -71,6 +71,14 @@ const router = createBrowserRouter([
                 path: "/dashboard/overview",
                 element: <h1>Dashboard Overview</h1>
             },
+            {
+                path: "/dashboard/my-pay-bills",
+                element: <MyPayBills></MyPayBills>
+            },
+            {
+                path: "/dashboard/profile",
+                element: <Profile></Profile>
+            },
         ]
     },
 ]);

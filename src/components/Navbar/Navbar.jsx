@@ -47,9 +47,9 @@ const Navbar = () => {
             <NavLink to="/" className={linkClass} onClick={closeMobile}><FiHome /> Home</NavLink>
             <NavLink to="/about" className={linkClass} onClick={closeMobile}><FiInfo /> About</NavLink>
             <NavLink to="/bills" className={linkClass} onClick={closeMobile}><FiFileText /> Bills</NavLink>
-            {user && <NavLink to="/my-pay-bills" className={linkClass} onClick={closeMobile}><FiCreditCard /> <span
+            {/* {user && <NavLink to="/my-pay-bills" className={linkClass} onClick={closeMobile}><FiCreditCard /> <span
                 className='text-nowrap'
-            >My Pay Bills</span></NavLink>}
+            >My Pay Bills</span></NavLink>} */}
 
             <div className="divider md:hidden border-t border-gray-200 my-2" />
 
@@ -65,7 +65,7 @@ const Navbar = () => {
                     {!isMobile && (
                         <div className="relative group" onClick={closeMobile}>
                             <Link
-                                to="/profile"
+                                to="/dashboard/profile"
                                 className="inline-flex items-center justify-center w-10 h-10 rounded-full overflow-hidden shadow-md transition-transform duration-200 transform hover:scale-105"
                             >
                                 {user.photoURL ? (
