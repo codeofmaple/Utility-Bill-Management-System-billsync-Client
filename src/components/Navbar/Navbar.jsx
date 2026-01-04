@@ -114,7 +114,7 @@ hover:shadow-lg transition-all duration-300 ">Profile</Link>
     );
 
     return (
-        <nav className='bg-white shadow-lg'>
+        <nav className='bg-white shadow-lg fixed top-0 w-full z-10'>
             <div className="bg-linear-to-r from-cyan-400/5 to-purple-500/5">
                 <div className="navbar main-container px-4 md:px-0 h-16">
                     <div className="navbar-start">
