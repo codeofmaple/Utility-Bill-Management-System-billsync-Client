@@ -32,6 +32,20 @@ const Login = () => {
             });
     };
 
+    const [demoCred, setDemoCred] = useState({
+        email: '',
+        password: ''
+    });
+
+
+    const handleDemoUser = () => {
+        setDemoCred({
+            email: 'user@gmail.com',
+            password: 'BillSyncUserPassword'
+        });
+    };
+
+
     const handleGoogleLogin = () => {
         setLoading(true);
         logInWithGoogle()
@@ -89,6 +103,10 @@ const Login = () => {
                                                 type="email"
                                                 placeholder="Email address"
                                                 name="email"
+                                                value={demoCred.email}
+                                                onChange={(e) =>
+                                                    setDemoCred({ ...demoCred, email: e.target.value })
+                                                }
                                                 className={`${inputBase} pl-12 focus:border-cyan-400 focus:shadow-lg focus:shadow-cyan-500/20`}
                                                 required
                                             />
@@ -100,6 +118,10 @@ const Login = () => {
                                                 type={showPassword ? 'text' : 'password'}
                                                 placeholder="Password"
                                                 name="password"
+                                                value={demoCred.password}
+                                                onChange={(e) =>
+                                                    setDemoCred({ ...demoCred, password: e.target.value })
+                                                }
                                                 className={`${inputBase} pl-12 pr-12 focus:border-cyan-400 focus:shadow-lg focus:shadow-cyan-500/20`}
                                                 required
                                             />
@@ -128,10 +150,22 @@ const Login = () => {
                                         disabled={loading}
                                         className="w-full py-3 bg-linear-to-r from-cyan-400 to-purple-500 text-white font-semibold rounded-2xl hover:shadow-2xl transition-all duration-300 ease-out hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 active:scale-95"
                                     >
-                                        {loading ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> : <span>Login</span>}
+                                        {loading ? <div className="w-5 h-5 border-2 border-white/30
+                                         border-t-white rounded-full animate-spin"></div> : <span>Login</span>}
                                         <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                                     </button>
                                 </Fade>
+
+                                <Fade triggerOnce delay={650}>
+                                    <button
+                                        type="button"
+                                        onClick={handleDemoUser}
+                                        className="w-full py-2 text-sm border border-dashed border-cyan-400/60 rounded-xl text-cyan-300 hover:bg-cyan-400/10 transition-all duration-300"
+                                    >
+                                        Login as Demo User
+                                    </button>
+                                </Fade>
+
                             </form>
 
                             {/* devide */}
